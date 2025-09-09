@@ -19,26 +19,28 @@ Key principles:
   - LM-as-a-judge (GPT scoring responses)  
   - human-in-the-loop (+1/–1 feedback)  
 - **Optimizer-as-Agent**  
-  - adaptive learning rates, momentum, β-values, weight decay  
+  - adaptive learning rates, momentum, β values, weight decay  
   - recurrent optimizers (GRU-based) with per-tensor hidden states  
 - **Dual Feedback Loop**  
   - Inner loop: policy gradient updates  
   - Outer loop: optimizer hyperparameter adaptation  
 
-Mathematical view:
+Mathematical view (GitHub-friendly):
 
-\[
-\theta_{t+1} = \theta_t - \eta_t \nabla_\theta \ell_t
-\]
+```
 
-\[
-\eta_{t+1} = f(\eta_t, \ell_t, R_t, \Delta R_t, \text{Var}[R_{t-k:t}])
-\]
+θ(t+1) = θ(t) − η(t) ∇θ ℓ(t)
 
-Where  
-- \( \theta \) = policy parameters  
-- \( \eta \) = optimizer state (lr, momentum, etc.)  
-- \( f \) = adaptation function (heuristics, recurrent dynamics, or learned rules)  
+η(t+1) = f( η(t), ℓ(t), R(t), ΔR(t), Var\[R(t−k : t)] )
+
+````
+
+Where:
+- θ = policy parameters  
+- η = optimizer state (lr, momentum, etc.)  
+- ℓ = loss  
+- R = reward  
+- f = adaptation rule (heuristic, recurrent, or learned)  
 
 ---
 
@@ -154,4 +156,3 @@ or better reward functions, feel free to open an issue or PR.
 ## 📜 License
 
 MIT License. See [LICENSE](LICENSE) for details.
-
